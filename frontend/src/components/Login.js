@@ -22,8 +22,8 @@ const Login = () => {
                                 <input className='outline-none border border-gray-800 px-4 py-2 rounded-full font-semibold' type="text" placeholder="Username"/>
                             </>)
                         }
-                        <input className='outline-none border border-gray-800 px-4 py-2 rounded-full font-semibold' type="text" placeholder="Email"/>
-                        <input className='outline-none border border-gray-800 px-4 py-2 rounded-full font-semibold' type="text" placeholder="Password"/>
+                        <input className='outline-none border border-gray-800 px-4 py-2 rounded-full font-semibold' type="email" placeholder="Email"/>
+                        <input className='outline-none border border-gray-800 px-4 py-2 rounded-full font-semibold' type="password" placeholder="Password"/>
                        
                         <button className='bg-black text-white border-none py-2 my-4 rounded-full text-lg font-bold'>{isLogin? "Login":"Create an account"}</button>
                         <h1>{isLogin? "Don't have an account? ":"Already have an account? "} <span onClick={LoginSingupHandler} className='hover:cursor-pointer font-bold text-blue-500'> {isLogin? "Register":"Login"}</span></h1>
