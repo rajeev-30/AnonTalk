@@ -2,8 +2,13 @@ import React from 'react'
 import Avatar from 'react-avatar';
 import { IoArrowBackSharp } from "react-icons/io5";
 import {Link} from "react-router-dom"
+import UseGetProfile from '../hooks/useGetProfile';
+import { useSelector } from 'react-redux';
+
 
 const Profile = () => {
+    const {user, profile} = useSelector(store=>store.user);
+    UseGetProfile(user?._id); 
   return (
     <div className='w-[55%] mx-5 border border-gray-200'>
         <div className=''>
@@ -12,7 +17,7 @@ const Profile = () => {
                     <IoArrowBackSharp size={"20px"}/>
                 </Link>
                 <div>
-                    <h1 className='font-bold text-xl'>Rajeev kumar</h1>
+                    <h1 className='font-bold text-xl'>{profile?.name}</h1>
                     <p className='text-sm text-gray-500'>10 posts</p>
                 </div>
             </div>
@@ -24,8 +29,8 @@ const Profile = () => {
                     <button className='px-4 py-2 bg-black text-white font-bold rounded-full'>Edit profile</button>
                 </div>
             <div className='mt-10 ml-4'>
-                <p className='font-bold text-2xl'>Rajeev kumar</p>
-                <p className='text-gray-500 text-m'>@rxjjjeev.k</p>
+                <p className='font-bold text-2xl'>{profile?.name}</p>
+                <p className='text-gray-500 text-m'>{`@${profile?.username}`}</p>
             </div>
             <div className='m-4 text-m'>
                 <p>In the Rohit Era, Mumbai Indians used to dominate all the teams and win the trophy so easily. Now in the Chapri Era.</p>

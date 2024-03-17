@@ -70,6 +70,7 @@ export const Login = async(req,res) =>{
 
         return res.status(201).cookie("token", token, {expiresIn:"1d", httpOnly:true}).json({
             message: `Welcome back ${user.username}!`,
+            user,
             status: true
         })
     }catch(error){
