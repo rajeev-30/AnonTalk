@@ -24,4 +24,5 @@ const useOtherUsers = (id) =>{
 
 }
 
+//export
 export default useOtherUsers;
