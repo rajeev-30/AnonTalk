@@ -4,7 +4,7 @@ import { FaRegHeart } from "react-icons/fa6";
 import { FaRegComment } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa";
 
-const Tweet = () => {
+const Tweet = ({tweet}) => {
   return (
     <div>
         <div>
@@ -16,9 +16,7 @@ const Tweet = () => {
                         <p className='text-slate-500 ml-1'>@rxjjjeev.k . 13h</p>
                     </div> 
                     <div>
-                        <p className='text-justify'> In the Rohit Era, Mumbai Indians used to dominate all the teams and win the trophy so easily.
-                            Now in the Chapri Era, Mumbai Indians were destroyed by a clown team like RCB and couldn't even qualify for final. 😭
-                            Never ever mess withtt Karma and Rohit Sharma! 🫵
+                        <p className='text-justify'> {tweet?.description}
                         </p>
                     </div>
                     <div className='mt-4 flex justify-between'>

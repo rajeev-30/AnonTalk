@@ -6,8 +6,10 @@ import { FiMessageSquare } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { IoLogOut } from "react-icons/io5";
 import {Link} from "react-router-dom"
+import { useSelector } from 'react-redux';
 
 const LeftSidebar = () => {
+  const {user} = useSelector(store=>store.user);
   return (
     <div className='w-[20%] mt-3'>
       <div>
@@ -40,7 +42,7 @@ const LeftSidebar = () => {
               </div>
               <h1 className='mx-2 font-semibold text-xl'>Message</h1>
             </div>
-            <Link to={"/profile"} className='flex items-center pl-2 pr-4 py-3 my-2 hover:bg-gray-200 hover:cursor-pointer rounded-full w-fit'>
+            <Link to={`/profile/${user?._id}`} className='flex items-center pl-2 pr-4 py-3 my-2 hover:bg-gray-200 hover:cursor-pointer rounded-full w-fit'>
               <div>
                 <CgProfile size={"30px"}/>
               </div>

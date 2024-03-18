@@ -1,14 +1,15 @@
 import React from 'react'
 import Avatar from 'react-avatar';
 import { IoArrowBackSharp } from "react-icons/io5";
-import {Link} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import UseGetProfile from '../hooks/useGetProfile';
 import { useSelector } from 'react-redux';
 
 
 const Profile = () => {
-    const {user, profile} = useSelector(store=>store.user);
-    UseGetProfile(user?._id); 
+    const {profile} = useSelector(store=>store.user);
+    const {id} = useParams();
+    UseGetProfile(id); 
   return (
     <div className='w-[55%] mx-5 border border-gray-200'>
         <div className=''>
