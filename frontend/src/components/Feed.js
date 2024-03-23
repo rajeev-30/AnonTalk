@@ -1,6 +1,6 @@
 import React from 'react'
-import { CreatePost } from './CreatePost'
-import Tweet from './Tweet'
+import { CreatePost } from './CreatePost.js'
+import Tweet from './Tweet.js'
 import {useSelector} from 'react-redux';
 
 const Feed = () => {
@@ -10,9 +10,9 @@ const Feed = () => {
     <div className='w-[55%] mx-5 border border-gray-2' >
       <CreatePost/>
       {
-        tweets?.map((tweet)=> <Tweet key={tweet?._id} tweet={tweet}/>)
+        tweets?.slice().reverse().map((tweet)=> <Tweet key={tweet?._id} tweet={tweet}/>)
       }
-     <Tweet/>
+     {/* <Tweet/> */}
     </div>
   )
 }

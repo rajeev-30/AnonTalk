@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux';
 import useGetMyTweets from '../hooks/useGetMyTweets';
 
 const Home = () => {
-  const {user, otherUsers} = useSelector(store=>store.user);
+  const { user, otherUsers } = useSelector(store => store.user);
   useOtherUsers(user?._id);
-  useGetMyTweets(user?._id);
+  useGetMyTweets();
 
   return (
     <div className='flex justify-between w-[85%] mx-auto'>

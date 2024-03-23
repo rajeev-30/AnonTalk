@@ -31,7 +31,7 @@ app.use(cors(corsOption));
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/tweet", tweetRoute)
 
-// app.get("/home", (req,res)=>{
+// app.get("/", (req,res)=>{
 //     res.status(200).json({
 //         messgae: " Coming from backend..."
 //     })

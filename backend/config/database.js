@@ -6,11 +6,12 @@ dotenv.config({
 })
 
 const databaseConnection = () =>{
-    mongoose.connect(process.env.MONGO_URI).then(()=>{
+    mongoose.connect(process.env.MONGO_URL).then(()=>{
         console.log('connected to MongoDB');
     }).catch((error)=>{
         console.log(`Error: ${error}`);
     })
 }
+
 
 export default databaseConnection;
