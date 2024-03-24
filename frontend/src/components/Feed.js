@@ -7,7 +7,7 @@ const Feed = () => {
   const {tweets} = useSelector(store=>store.tweet);
 
   return (
-    <div className='w-[55%] mx-5 border border-gray-2' >
+    <div className='w-[55%] h-[100%] mx-5 border border-gray-2' >
       <CreatePost/>
       {
         tweets?.slice().reverse().map((tweet)=> <Tweet key={tweet?._id} tweet={tweet}/>)

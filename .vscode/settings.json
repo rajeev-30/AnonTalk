@@ -1,0 +1,8 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": true,
+    "files.autoSave": "off",
+    "editor.formatOnSaveMode": "file",
+    "files.refactoring.autoSave": false
+}

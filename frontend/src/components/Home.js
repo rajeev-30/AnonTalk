@@ -10,7 +10,7 @@ import useGetMyTweets from '../hooks/useGetMyTweets';
 const Home = () => {
   const { user, otherUsers } = useSelector(store => store.user);
   useOtherUsers(user?._id);
-  useGetMyTweets();
+  useGetMyTweets(user?._id);
 
   return (
     <div className='flex justify-between w-[85%] mx-auto'>
