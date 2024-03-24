@@ -32,10 +32,11 @@ const userSchema = new mongoose.Schema({
         type:Array,
         default:[],
     },
-    tweetCount: {
-        type: Array,
-        default: []
-    },
+    // tweetCount: {
+    //     type: Array,
+    //     default: []
+    // },
+    
 },{timestamps:true})
 
 export const User = mongoose.model("User", userSchema);

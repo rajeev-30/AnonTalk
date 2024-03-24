@@ -3,24 +3,29 @@ import Avatar from 'react-avatar';
 import { IoArrowBackSharp } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom"
 import UseGetProfile from '../hooks/useGetProfile';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { USER_API_END_POINT } from '../utils/constant';
 import toast from 'react-hot-toast';
+import {followingUpdate} from '../redux/userSlice'
+import { getRefresh } from '../redux/tweetSlice';
 
 const Profile = () => {
     const { user, profile } = useSelector(store => store.user);
     const { id } = useParams();
     UseGetProfile(id);
+    const dispatch = useDispatch();
 
     const followAndUnFollowingHandler = async() => {
-        //UNFollow
+        //UnFollow
         if (user.following.includes(id)) {
             try {
                 const res = await axios.post(`${USER_API_END_POINT}/unfollow/${id}`, { id:user?._id }, {
                     withCredentials: true,
                 })
                 console.log(res);
+                dispatch(followingUpdate(id));
+                dispatch(getRefresh());
                 toast.success(res.data.message);
             } catch (error) {
                 toast.error(error.response.data.message);
@@ -33,6 +38,8 @@ const Profile = () => {
                     withCredentials: true,
                 })
                 console.log(res);
+                dispatch(followingUpdate(id));
+                dispatch(getRefresh());
                 toast.success(res.data.message);
             } catch (error) {
                 toast.error(error.response.data.message);
@@ -49,7 +56,7 @@ const Profile = () => {
                     </Link>
                     <div>
                         <h1 className='font-bold text-xl'>{profile?.name}</h1>
-                        <p className='text-sm text-gray-500'>{`${user.tweetCount.length} tweets`}</p>
+                        <p className='text-sm text-gray-500'>{`0 tweets`}</p>
                     </div>
                 </div>
                 <img src='https://pbs.twimg.com/profile_banners/1581707412922200067/1693248932/1500x500' alt='banner' />

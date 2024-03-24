@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Avatar from "react-avatar";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaRegComment } from "react-icons/fa6";
@@ -9,11 +9,14 @@ import { TWEET_API_END_POINT } from '../utils/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { getRefresh } from '../redux/tweetSlice';
+import { FaHeart } from "react-icons/fa6";
 
 const Tweet = ({ tweet }) => {
 
     const { user } = useSelector(store => store.user);
+    // const { tweet } = useSelector(store => store.tweet);
     const dispatch = useDispatch();
+    const [likeButton, setLikeButton] = useState(tweet.like.includes(user._id));
 
     const likeOrDislikeHandler = async (id) => {
         try {
@@ -39,6 +42,10 @@ const Tweet = ({ tweet }) => {
             console.log(error);
         }
     }
+
+    const likeButtonHandler = () => {
+        setLikeButton(!likeButton);
+    }
     
     return (
         <div>
@@ -55,11 +62,30 @@ const Tweet = ({ tweet }) => {
                             </p>
                         </div>
                         <div className='mt-4 flex justify-between'>
-                            <div className='flex items-center hover:text-[#F535AA] hover:cursor-pointer'>
+                            <div onClick={likeButtonHandler} className='flex items-center hover:text-[#F535AA] hover:cursor-pointer'>
                                 <div onClick={() => likeOrDislikeHandler(tweet?._id)} className='hover:bg-red-50 hover:text-rose-600  rounded-full p-2'>
-                                    <FaRegHeart />
+                                    {
+                                        !likeButton && (<>
+                                                <FaRegHeart />
+                                            </>)
+                                    }
+                                    {
+                                        likeButton && (<>
+                                            <FaHeart className='text-[#F535AA]' />
+                                        </>)
+                                    }
                                 </div>
-                                <p className=''>{tweet?.like.length}</p>
+                                {
+                                    !likeButton && (<>
+                                        <p className=''>{tweet?.like.length}</p>
+                                    </>)
+                                }
+                                {
+                                    likeButton && (<>
+                                        <p className='text-[#F535AA]'>{tweet?.like.length}</p>
+                                    </>)
+                                }
+                               
                             </div>
                             <div className='flex items-center hover:text-[#39FF14] hover:cursor-pointer'>
                                 <div className='hover:bg-green-50  rounded-full p-2'>
