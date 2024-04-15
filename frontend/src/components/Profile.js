@@ -9,12 +9,15 @@ import { USER_API_END_POINT } from '../utils/constant';
 import toast from 'react-hot-toast';
 import {followingUpdate} from '../redux/userSlice'
 import { getRefresh } from '../redux/tweetSlice';
+import Tweet from './Tweet.js'
 
 const Profile = () => {
     const { user, profile } = useSelector(store => store.user);
     const { id } = useParams();
+    const { tweets } = useSelector(store => store.tweet);
     UseGetProfile(id);
     const dispatch = useDispatch();
+    const itemToFind = tweets?.filter(tweet => tweet.userId === id);
 
     const followAndUnFollowingHandler = async() => {
         //UnFollow
@@ -56,7 +59,7 @@ const Profile = () => {
                     </Link>
                     <div>
                         <h1 className='font-bold text-xl'>{profile?.name}</h1>
-                        <p className='text-sm text-gray-500'>{`0 tweets`}</p>
+                        <p className='text-sm text-gray-500'>{`${itemToFind.length} posts`}</p>
                     </div>
                 </div>
                 <img src='https://pbs.twimg.com/profile_banners/1581707412922200067/1693248932/1500x500' alt='banner' />
@@ -81,7 +84,7 @@ const Profile = () => {
                 </div>
                 <div className='flex justify-between tems-center mx-4'>
                     <div>
-                        <p><span className='font-bold text-lg'>{profile?.tweetCount.length}</span> Posts</p>
+                        <p><span className='font-bold text-lg'>{itemToFind.length}</span> Posts</p>
                     </div>
                     <div>
                         <p> <span className='font-bold text-lg'>{profile?.followers.length}</span> Followers</p>
@@ -89,6 +92,13 @@ const Profile = () => {
                     <div>
                         <p> <span className='font-bold text-lg'>{profile?.following.length}</span> Following</p>
                     </div>
+                </div>
+                <div className='border-b border-1 border-gray-200 text-b p-2'></div>
+                {/* All tweets of user */}
+                <div>
+                    {
+                        itemToFind?.slice().reverse().map((tweet) => <Tweet key={tweet?._id} tweet={tweet} />)
+                    }
                 </div>
             </div>
         </div>

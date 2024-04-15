@@ -13,10 +13,9 @@ import { getAllTweets, getIsActive, getRefresh } from '../redux/tweetSlice';
 export const CreatePost = () => {
     const [description, setDescription] = useState("");
     const {user} = useSelector(store=>store.user);
-    const {tweet} = useSelector(store=>store.tweet);
+    const {tweets} = useSelector(store=>store.tweet);
     const {isActive} = useSelector(store=>store.tweet);
     const dispatch = useDispatch();
-
 
     const submitHandler = async () =>{
         try {
@@ -26,10 +25,6 @@ export const CreatePost = () => {
                 },
                 withCredentials:true,
             });
-            const res1 = await axios.put(`${USER_API_END_POINT}/tweetcount/${tweet[0]?._id}`,{id: user?._id },{
-                withCredentials: true,
-            })
-
             dispatch(getRefresh());
             if(res.data.status){
                 toast.success(res.data.message);
