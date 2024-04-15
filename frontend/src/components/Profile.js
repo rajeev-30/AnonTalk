@@ -79,6 +79,17 @@ const Profile = () => {
                 <div className='m-4 text-m'>
                     <p>In the Rohit Era, Mumbai Indians used to dominate all the teams and win the trophy so easily. Now in the Chapri Era.</p>
                 </div>
+                <div className='flex justify-between tems-center mx-4'>
+                    <div>
+                        <p><span className='font-bold text-lg'>{profile?.tweetCount.length}</span> Posts</p>
+                    </div>
+                    <div>
+                        <p> <span className='font-bold text-lg'>{profile?.followers.length}</span> Followers</p>
+                    </div>
+                    <div>
+                        <p> <span className='font-bold text-lg'>{profile?.following.length}</span> Following</p>
+                    </div>
+                </div>
             </div>
         </div>
     )

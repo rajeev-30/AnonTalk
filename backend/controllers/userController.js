@@ -108,6 +108,28 @@ export const bookmark = async (req, res) => {
     }
 }
 
+export const tweetCount = async (req, res) => {
+    try {
+        const loggedInUserId = req.body.id;
+        const tweetId = req.params.id;
+        const user = await User.findById(loggedInUserId);
+        if (user.tweetCount.includes(tweetId)) {
+            await User.findByIdAndUpdate(loggedInUserId, { $pull: { tweetCount: tweetId } });
+            return res.status(200).json({
+                message: "TweetCount removed",
+            })
+        } else {
+            await User.findByIdAndUpdate(loggedInUserId, { $push: { tweetCount: tweetId } });
+            return res.status(200).json({
+                message: "TweetCount Added",
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const getMyProfile = async (req, res) => {
     try {
         const id = req.params.id;

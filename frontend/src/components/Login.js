@@ -5,6 +5,8 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {getUser} from '../redux/userSlice'
+import logo  from '../images/logo.png'
+
 
 const Login = () => {
     const [isLogin,setIsLogin] = useState(true);
@@ -63,7 +65,7 @@ const Login = () => {
         <div className='w-screen h-screen flex items-center justify-center'>
             <div className='flex items-center justify-evenly w-[80%]'>
                 <div>
-                    <img width={"400px"} src="https://img.freepik.com/free-vector/twitter-new-2023-x-logo-white-background-vector_1017-45422.jpg?w=1380&t=st=1710528191~exp=1710528791~hmac=3fbd0810e89d3bc771029903c81a6097e1c2caa2ee48c58b675dc437639cfc02" alt=''/>
+                      <img width={"300px"} src={logo} alt='Imaged' />
                 </div>
                 <div>
                     <div className='font-bold text-6xl my-5'>Happening Now...</div>

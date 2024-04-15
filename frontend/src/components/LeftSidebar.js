@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdOutlineHome } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -12,11 +12,13 @@ import { USER_API_END_POINT } from '../utils/constant';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { getMyProfile, getOtherUsers, getUser } from '../redux/userSlice';
-
+import logo from '../images/logo.png'
+import { RiLogoutBoxFill } from "react-icons/ri";
 const LeftSidebar = () => {
   const { user } = useSelector(store => store.user);
   const navigat = useNavigate();
   const dispatch = useDispatch();
+  const [isLogin, setIsLogin] = useState(user); 
   
   const logoutHandler = async () => {
     try {
@@ -35,7 +37,7 @@ const LeftSidebar = () => {
     <div className='w-[20%] mt-3	'>
       <div className='fixed' >
         <div>
-          <img width={"50px"} src="https://img.freepik.com/free-vector/twitter-new-2023-x-logo-white-background-vector_1017-45422.jpg?w=1380&t=st=1710528191~exp=1710528791~hmac=3fbd0810e89d3bc771029903c81a6097e1c2caa2ee48c58b675dc437639cfc02" alt=''/>
+          <img width={"60px"} src={logo} alt=''/>
         </div>
 
         <div className='my-3'> 
@@ -68,13 +70,29 @@ const LeftSidebar = () => {
                 <CgProfile size={"30px"}/>
               </div>
               <h1 className='mx-2 font-semibold text-xl'>Profile</h1>
-            </Link>
-            <div onClick={logoutHandler} className='flex items-center pl-2 pr-4 py-3 my-2 hover:bg-gray-200 hover:cursor-pointer rounded-full w-fit'>
+          </Link>
+          {
+            !isLogin && (<>
+              <Link to={'/login'}>
+            <div className='flex items-center pl-2 pr-4 py-3 my-2 hover:bg-gray-200 hover:cursor-pointer rounded-full w-fit'>
               <div>
                 <IoLogOut size={"30px"}/>
               </div>
+              <h1 className='mx-2 font-semibold text-xl'>Login</h1>
+            </div>
+              </Link>
+            </>)
+          }
+          {
+            isLogin && (<>
+            <div onClick={logoutHandler} className='flex items-center pl-2 pr-4 py-3 my-2 hover:bg-gray-200 hover:cursor-pointer rounded-full w-fit'>
+              <div>
+                  <RiLogoutBoxFill size={"30px"}/>
+              </div>
               <h1 className='mx-2 font-semibold text-xl'>Logout</h1>
             </div>
+            </>)
+          }
             <button className='px-10 py-3 my-2 border-none text-xl font-bold bg-[#1D9BF0] w-full text-white hover:cursor-pointer rounded-full '>Post</button>
         </div>
 

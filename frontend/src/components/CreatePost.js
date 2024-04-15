@@ -4,13 +4,16 @@ import { IoImageOutline } from "react-icons/io5";
 import  {useState}  from 'react';
 import axios from "axios";
 import {TWEET_API_END_POINT} from "../utils/constant";
+import {USER_API_END_POINT} from "../utils/constant";
 import toast from 'react-hot-toast';
 import {useDispatch, useSelector} from 'react-redux';
 import { getAllTweets, getIsActive, getRefresh } from '../redux/tweetSlice';
+// import {tweetCounthandler} from './Tweet'
 
 export const CreatePost = () => {
     const [description, setDescription] = useState("");
     const {user} = useSelector(store=>store.user);
+    const {tweet} = useSelector(store=>store.tweet);
     const {isActive} = useSelector(store=>store.tweet);
     const dispatch = useDispatch();
 
@@ -23,6 +26,10 @@ export const CreatePost = () => {
                 },
                 withCredentials:true,
             });
+            const res1 = await axios.put(`${USER_API_END_POINT}/tweetcount/${tweet[0]?._id}`,{id: user?._id },{
+                withCredentials: true,
+            })
+
             dispatch(getRefresh());
             if(res.data.status){
                 toast.success(res.data.message);

@@ -11,12 +11,17 @@ import toast from 'react-hot-toast';
 import { getRefresh } from '../redux/tweetSlice';
 import { FaHeart } from "react-icons/fa6";
 
+
+
 const Tweet = ({ tweet }) => {
 
     const { user } = useSelector(store => store.user);
     // const { tweet } = useSelector(store => store.tweet);
     const dispatch = useDispatch();
     const [likeButton, setLikeButton] = useState(tweet.like.includes(user._id));
+    
+   
+
 
     const likeOrDislikeHandler = async (id) => {
         try {
@@ -46,6 +51,8 @@ const Tweet = ({ tweet }) => {
     const likeButtonHandler = () => {
         setLikeButton(!likeButton);
     }
+
+   
     
     return (
         <div>
@@ -116,5 +123,4 @@ const Tweet = ({ tweet }) => {
         </div >
     )
 }
-
 export default Tweet
