@@ -62,7 +62,7 @@ const Tweet = ({ tweet }) => {
                     <div className='ml-2 w-full'>
                         <div className='flex items-center'>
                             <h1 className='font-bold'>{tweet?.userDetails[0]?.name}</h1>
-                            <p className='text-slate-500 ml-1'>{`@${tweet?.userDetails[0]?.username} . 12h`}</p>
+                            <p className='text-slate-500 ml-1'>{`@${tweet?.userDetails[0]?.username}`}</p>
                         </div>
                         <div >
                             <p className='text-justify'> {tweet?.description}

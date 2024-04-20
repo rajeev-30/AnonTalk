@@ -8,16 +8,17 @@ import {USER_API_END_POINT} from "../utils/constant";
 import toast from 'react-hot-toast';
 import {useDispatch, useSelector} from 'react-redux';
 import { getAllTweets, getIsActive, getRefresh } from '../redux/tweetSlice';
+import LeftSidebar from './LeftSidebar';
 // import {tweetCounthandler} from './Tweet'
 
 export const CreatePost = () => {
     const [description, setDescription] = useState("");
     const {user} = useSelector(store=>store.user);
-    const {tweets} = useSelector(store=>store.tweet);
+    // const {tweets} = useSelector(store=>store.tweet);
     const {isActive} = useSelector(store=>store.tweet);
     const dispatch = useDispatch();
 
-    const submitHandler = async () =>{
+     const submitHandler = async () =>{
         try {
             const res = await axios.post(`${TWEET_API_END_POINT}/create`,{description, id:user?._id},{
                 headers:{
@@ -60,16 +61,19 @@ export const CreatePost = () => {
             <div className='flex relative'>
                 <div className='m-4'>
                     <Avatar googleId="118096717852922241760" size="40" round={true} />
-                </div>
+                  </div>
                     <input value={description} onChange={(e)=>setDescription(e.target.value)} className='w-full outline-none border-none pr-5 text-xl font-medium bg-transparent' type='text' placeholder='Write fearlessy...'/>
             </div>
             <div className='flex justify-between mx-16 mt-12 mb-4'>
                 <IoImageOutline size={"20px"}/>
-                <button onClick={submitHandler} className='bg-[#1D9BF0] px-4 py-1 text-lg text-white font-semibold border-none rounded-full'>post</button>
+                  <button onClick={submitHandler} className='bg-black px-4 py-1 text-lg text-white font-semibold border-none rounded-full'>post</button>
             </div>
                             {/* Border  Bottom*/}
-            <div className='border-b border-gray-2'></div>
+              <div className='border-b border-gray-2'></div>
+
         </div>
     </div>
   )
 }
+
+export default CreatePost;

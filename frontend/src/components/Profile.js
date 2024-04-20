@@ -64,7 +64,7 @@ const Profile = () => {
                 </div>
                 <img src='https://pbs.twimg.com/profile_banners/1581707412922200067/1693248932/1500x500' alt='banner' />
                 <div className='absolute top-52 ml-2 border-4 border-white rounded-full'>
-                    <Avatar googleId="118096717852922241760" size="120" round={true} />
+                    <Avatar twitterHandle="sitebase" size="120" round={true} />
                 </div>
                 <div className='text-right m-4'>
                     {
@@ -80,7 +80,7 @@ const Profile = () => {
                     <p className='text-gray-500 text-m'>{`@${profile?.username}`}</p>
                 </div>
                 <div className='m-4 text-m'>
-                    <p>In the Rohit Era, Mumbai Indians used to dominate all the teams and win the trophy so easily. Now in the Chapri Era.</p>
+                    {/* <p>In the Rohit Era, Mumbai Indians used to dominate all the teams and win the trophy so easily. Now in the Chapri Era.</p> */}
                 </div>
                 <div className='flex justify-between tems-center mx-4'>
                     <div>
